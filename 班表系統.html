@@ -1,0 +1,687 @@
+<style>
+  /* HookyQR.beautify 整理html格式 */
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+  }
+
+  label {
+    font-weight: bold;
+    font-size: 16px;
+    color: #555;
+  }
+
+  /* form 表單 css */
+  .elegant-aero {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    background: #D2E9FF;
+    padding: 20px 20px 20px 20px;
+    font: 12px Arial, Helvetica, sans-serif;
+    color: #666;
+  }
+
+  .elegant-aero h1 {
+    font: 24px "Trebuchet MS", Arial, Helvetica, sans-serif;
+    padding: 10px 10px 10px 20px;
+    display: block;
+    background: #C0E1FF;
+    border-bottom: 1px solid #B8DDFF;
+    margin: -20px -20px 15px;
+  }
+
+  .elegant-aero h1>span {
+    display: block;
+    font-size: 11px;
+  }
+
+  .elegant-aero label>span {
+    float: left;
+    margin-top: 10px;
+    color: #5E5E5E;
+  }
+
+  .elegant-aero label {
+    display: block;
+    margin: 0px 0px 5px;
+  }
+
+  .elegant-aero label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 15px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .elegant-aero input[type="text"],
+  .elegant-aero input[type="email"],
+  .elegant-aero textarea,
+  .elegant-aero select {
+    color: #888;
+    width: 70%;
+    padding: 0px 0px 0px 5px;
+    border: 1px solid #C5E2FF;
+    background: #FBFBFB;
+    outline: 0;
+    -webkit-box-shadow: inset 0px 1px 6px #ECF3F5;
+    box-shadow: inset 0px 1px 6px #ECF3F5;
+    font: 200 12px/25px Arial, Helvetica, sans-serif;
+    height: 30px;
+    line-height: 15px;
+    margin: 2px 6px 16px 0px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .elegant-aero textarea {
+    height: 100px;
+    padding: 5px 0px 0px 5px;
+    width: 70%;
+  }
+
+  .elegant-aero select {
+    background: #fbfbfb url('down-arrow.png') no-repeat right;
+    background: #fbfbfb url('down-arrow.png') no-repeat right;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+  }
+
+  .elegant-aero .button {
+    padding: 10px 30px 10px 30px;
+    background: #66C1E4;
+    border: none;
+    color: #FFF;
+    box-shadow: 1px 1px 1px #4C6E91;
+    -webkit-box-shadow: 1px 1px 1px #4C6E91;
+    -moz-box-shadow: 1px 1px 1px #4C6E91;
+    text-shadow: 1px 1px 1px #5079A3;
+    margin-top: 10px;
+  }
+
+  .elegant-aero .button:hover {
+    background: #3EB1DD;
+  }
+
+  .elegant-aero .submit {
+    background: #66C20B;
+  }
+
+  .elegant-aero .submit:hover {
+    background: #0ec20b;
+  }
+
+  .elegant-aero .clear {
+    background: #ff008c;
+  }
+
+  .elegant-aero .clear:hover {
+    background: #ff0005;
+  }
+</style>
+
+<style>
+  table {
+    border: 1px solid #000;
+    font-family: 微軟正黑體;
+    font-size: 16px;
+    width: 200px;
+    border: 1px solid #000;
+    text-align: center;
+    border-collapse: collapse;
+    width: 85%;
+    margin-left: 5%;
+    margin-top: 10px;
+  }
+
+  th {
+    background-color: #009FCC;
+    padding: 10px;
+    border: 1px solid #000;
+    color: #fff;
+  }
+
+  td {
+    border: 1px solid #000;
+    padding: 5px;
+  }
+</style>
+<!-- 彈跳視窗 -->
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .onWorkPeopleCount {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .onWorkPeopleCount h2 {
+    width: 100%;
+  }
+
+  .onWorkPeopleCount label {
+    flex-basis: calc(10%);
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  .onWorkPeopleCount input {
+    flex-basis: calc(10%);
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 768px) {
+
+    .onWorkPeopleCount label,
+    .onWorkPeopleCount input {
+      flex-basis: 100%;
+      margin-right: 0;
+    }
+  }
+
+  .people-div {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .people-div label {
+    flex-basis: calc(10%);
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  .people-div input {
+    flex-basis: calc(10%);
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+
+  .red {
+    color: #ff0005;
+    font-weight: bold;
+  }
+
+  .rest {
+    background-color: #f4cccc;
+    color: #ff0005;
+    font-weight: bold;
+  }
+</style>
+<h2>班表系統</h2>
+<button onclick="openModal()">打開設定檔</button>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>設定檔</h3>
+    <form id="myForm" class="elegant-aero">
+      <label for="year">年份:</label>
+      <input type="text" id="year" name="year" required><br><br>
+      <label for="month">月份:</label>
+      <input type="text" id="month" name="month" required><br><br>
+      <label for="daysOnPerPerson">正常工作日:</label>
+      <input type="text" id="daysOnPerPerson" name="daysOnPerPerson" required><br><br>
+      <div class="onWorkPeopleCount">
+        <h2>每天需要的人數:</h2>
+        <label>星期日 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+        <label>星期一 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+        <label>星期二 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+        <label>星期三 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+        <label>星期四 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+        <label>星期五 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+        <label>星期六 : </label>
+        <input type="text" name="onWorkPeopleCount[]" required><br><br>
+      </div>
+      <!-- 初始狀態：一個輸入框 -->
+      <button type="button" class="button" onclick="addInput()"> + 員工</button>
+      <button type="button" class="button" onclick="removeInput()"> - 員工</button>
+      <div id="inputContainer">
+      </div>
+      <input type="button" id="generate-button" class="button submit" value="建立班表">
+      <input type="button" id="clear-button" class="button clear" value="重置設定">
+    </form>
+  </div>
+</div>
+<table id="table-container">
+
+</table>
+<script>
+  var year = 2023; // 預設完成年
+  var month = 0; // 一月是第5個月份，JavaScript中月份從0開始算，因此這裡是4
+  // 每天需要上班的人數
+  var onWorkPeopleCount = {};
+  var daysOnPerPerson = 22; // 預設22天
+
+  // 下列還沒設定
+  // 有哪一些人 個工作幾天
+  var people = {};
+
+  // 每周最多的上班天數
+  var onWorkOfWeekly = {};
+  
+  // 固定休
+  var offWorkByDay = {};
+
+  var generateButton = document.getElementById('generate-button');
+  // 添加點擊事件的監聽器
+  generateButton.addEventListener('click', function (event) {
+    saveConfigs();
+    generateSchedule();
+    closeModal();
+  });
+  var clearButton = document.getElementById('clear-button');
+  // 添加點擊事件的監聽器
+  clearButton.addEventListener('click', function (event) {
+    clearConfigs();
+  });
+  // 預設 config 內容
+  function configs() {
+    // 年份 : 預設 當前年份
+    let year = localStorage.getItem('year') !== null ? localStorage.getItem('year') : new Date().getFullYear();
+    document.getElementById('year').value = year;
+    // 月份 : 預設 當前月份
+    let month = localStorage.getItem('month') !== null ? localStorage.getItem('month') : new Date().getMonth() + 1;
+    document.getElementById('month').value = month;
+    // 每個月工作日 : 預設 22 天
+    daysOnPerPerson = localStorage.getItem('daysOnPerPerson') !== null ? localStorage.getItem('daysOnPerPerson') : 22;
+    document.getElementById('daysOnPerPerson').value = daysOnPerPerson;
+    // 星期中的日子 需要的人數
+    let onWorkPeopleCountInputs = document.getElementsByName('onWorkPeopleCount[]');
+    onWorkPeopleCount = localStorage.getItem('onWorkPeopleCount') !== null ? JSON.parse(localStorage.getItem(
+      'onWorkPeopleCount')) : {
+      1: 8, //星期一
+      2: 8, //星期二
+      3: 10, //星期三
+      4: 10, //星期四
+      5: 8, //星期五
+      6: 5, //星期六
+      0: 5, //星期日
+    };
+    for (var i = 0; i < Object.keys(onWorkPeopleCount).length; i++) {
+      onWorkPeopleCountInputs[i].value = onWorkPeopleCount[i];
+    }
+
+    people = localStorage.getItem('people') !== null ? JSON.parse(localStorage.getItem(
+      'people')) : {
+      '員工一': 22,
+      '員工二': 22,
+      '員工三': 22,
+      '員工四': 22,
+      '員工五': 22,
+      '員工六': 22,
+      '員工七': 22,
+      '員工八': 22,
+      '員工九': 22,
+      '員工十(PT)': 16,
+      '員工十一(PT)': 11,
+      '員工十二(PT)': 9,
+      '員工十三(PT)': 11,
+    };
+    
+    onWorkOfWeekly = localStorage.getItem('onWorkOfWeekly') !== null ? JSON.parse(localStorage.getItem(
+      'onWorkOfWeekly')) : {
+      '員工一': 5,
+      '員工二': 5,
+      '員工三': 5,
+      '員工四': 5,
+      '員工五': 5,
+      '員工六': 5,
+      '員工七': 5,
+      '員工八': 5,
+      '員工九': 5,
+      '員工十(PT)': 4,
+      '員工十一(PT)': 5,
+      '員工十二(PT)': 5,
+      '員工十三(PT)': 5,
+    };
+
+    offWorkByDay = localStorage.getItem('offWorkByDay') !== null ? JSON.parse(localStorage.getItem(
+      'offWorkByDay')) : {
+      '員工一': [],
+      '員工二': [],
+      '員工三': [],
+      '員工四': [],
+      '員工五': [],
+      '員工六': [],
+      '員工七': [],
+      '員工八': [],
+      '員工九': [],
+      '員工十(PT)': [1, 2],
+      '員工十一(PT)': [],
+      '員工十二(PT)': [],
+      '員工十三(PT)': [],
+    };
+
+    let offWorkByDayArray = Object.keys(offWorkByDay);
+    for (var i = 0; i < offWorkByDayArray.length; i++) {
+      offWorkByDay[offWorkByDayArray[i]] = offWorkByDay[offWorkByDayArray[i]] == '' ? [] : offWorkByDay[offWorkByDayArray[i]].map(function(str) {
+        return parseInt(str);
+      });
+    }
+
+    // 遍歷物件中的所有元素
+    for (let key in people) {
+      addInput();
+    }
+    
+    var peopleInputs = document.getElementsByName('people[]');
+    var workdaysInputs = document.getElementsByName('workdays[]');
+    var workdaysByWeekInputs = document.getElementsByName('workdaysByWeek[]');
+    var fixedRestDayInputs = document.getElementsByName('fixedRestDay[]');
+    var peopleKeys = Object.keys(people);
+
+    for (let i = 0; i < peopleKeys.length; i++) {
+      peopleInputs[i].value = peopleKeys[i];
+      workdaysInputs[i].value = people[peopleKeys[i]];
+      workdaysByWeekInputs[i].value = onWorkOfWeekly[peopleKeys[i]];
+      fixedRestDayInputs[i].value = offWorkByDay[peopleKeys[i]].toString();
+    }
+    
+  }
+  // 儲存 config 內容
+  function saveConfigs() {
+    localStorage.setItem('year', document.getElementById('year').value);
+    localStorage.setItem('month', document.getElementById('month').value);
+    localStorage.setItem('daysOnPerPerson', document.getElementById('daysOnPerPerson').value);
+    let onWorkPeopleCountInputs = document.getElementsByName('onWorkPeopleCount[]');
+    let setOnWorkPeopleCount = {};
+    for (var i = 0; i < onWorkPeopleCountInputs.length; i++) {
+      setOnWorkPeopleCount[i] = parseInt(onWorkPeopleCountInputs[i].value);
+    }
+    localStorage.setItem('onWorkPeopleCount', JSON.stringify(setOnWorkPeopleCount));
+    
+    var peopleInputsLength = document.querySelectorAll('input[name="people[]"]').length;
+    var peopleInputs = document.getElementsByName('people[]');
+    let setPeople = {};
+    var workdaysInputs = document.getElementsByName('workdays[]');
+    var workdaysByWeekInputs = document.getElementsByName('workdaysByWeek[]');
+    let setOnWorkOfWeekly = {};
+    var fixedRestDayInputs = document.getElementsByName('fixedRestDay[]');
+    let setOffWorkByDay = {};
+    for (var i = 0; i < peopleInputsLength; i++) {
+      setPeople[peopleInputs[i].value] = parseInt(workdaysInputs[i].value);
+      setOnWorkOfWeekly[peopleInputs[i].value] = parseInt(workdaysByWeekInputs[i].value);
+      setOffWorkByDay[peopleInputs[i].value] = fixedRestDayInputs[i].value.split(',');
+    }
+    localStorage.setItem('people', JSON.stringify(setPeople));
+    localStorage.setItem('onWorkOfWeekly', JSON.stringify(setOnWorkOfWeekly));
+    localStorage.setItem('offWorkByDay', JSON.stringify(setOffWorkByDay));
+    onWorkPeopleCount = setOnWorkPeopleCount;
+    people = setPeople;
+    onWorkOfWeekly = setOnWorkOfWeekly;
+    offWorkByDay = setOffWorkByDay;
+    let offWorkByDayArray = Object.keys(offWorkByDay);
+    for (var i = 0; i < offWorkByDayArray.length; i++) {
+      offWorkByDay[offWorkByDayArray[i]] = offWorkByDay[offWorkByDayArray[i]] == '' ? [] : offWorkByDay[offWorkByDayArray[i]].map(function(str) {
+        return parseInt(str);
+      });
+    }
+  }
+  // 清除 config 內容
+  function clearConfigs() {
+    var peopleInputs = document.getElementsByName('people[]');
+    for (let key in peopleInputs) {
+      removeInput();
+    }
+    localStorage.removeItem('year');
+    localStorage.removeItem('month');
+    localStorage.removeItem('daysOnPerPerson');
+    localStorage.removeItem('onWorkPeopleCount');
+    localStorage.removeItem('people');
+    localStorage.removeItem('onWorkOfWeekly');
+    localStorage.removeItem('offWorkByDay');
+    configs();
+  }
+
+  function generateSchedule() {
+    const days = ['日', '一', '二', '三', '四', '五', '六'];
+    const dates = [];
+    month = document.getElementById('month').value - 1;
+    // 創建日期
+    let date = new Date(year, month, 1);
+    while (date.getMonth() === month) {
+      dates.push(date.getDate());
+      date.setDate(date.getDate() + 1);
+    }
+
+    const schedule = [];
+    const daysOnCount = {}; // 記錄每個人已經上班的天數
+    const WeeksOnCount = {}; // 記錄每個人每周已經上班的天數
+
+    // 遍歷物件中的所有元素
+    for (let key in people) {
+      daysOnCount[key] = 0;
+      WeeksOnCount[key] = 0;
+    }
+
+    // 循環每一天，為每一天分配人員
+    for (let i = 0; i < dates.length; i++) {
+      const day = {};
+      day.year = document.getElementById('year').value;
+      day.month = document.getElementById('month').value;
+      day.date = dates[i];
+      day.dayOfWeek = new Date(year, month, dates[i]).getDay();
+      // 周一重置 每個人的每周上班天數
+      if (day.dayOfWeek === 1) {
+        for (let key in people) {
+          WeeksOnCount[key] = 0;
+        }
+      }
+      const availablePeople = [];
+
+      // 遍歷物件中的所有元素
+      for (let key in people) {
+        // 跳過固定休
+        if (offWorkByDay[key] !== undefined && offWorkByDay[key].includes(day.dayOfWeek)) {
+          continue;
+        }
+        if (daysOnCount[key] < daysOnPerPerson) {
+          availablePeople.push(key);
+        }
+      }
+
+      // 隨機從可用的人員中選擇5個人
+      day.people = [];
+
+      for (let j = 0; j < onWorkPeopleCount[day.dayOfWeek]; j++) {
+        if (availablePeople.length === 0) {
+          break;
+        }
+        const randomIndex = Math.floor(Math.random() * availablePeople.length);
+        const randomPerson = availablePeople[randomIndex];
+        if (WeeksOnCount[randomPerson] >= onWorkOfWeekly[randomPerson]) {
+          j -= 1;
+          continue;
+        }
+        day.people.push(randomPerson);
+        availablePeople.splice(randomIndex, 1);
+        daysOnCount[randomPerson]++;
+      }
+
+      schedule.push(day);
+    }
+
+    // console.log(schedule);
+
+    // 建立一個空字串來存放 HTML 表格的內容
+    let tableHTML = '';
+
+    // 建立表格標題的 HTML
+    tableHTML += '<tr>';
+
+    tableHTML += '<th>' + '' + '</th>';
+    tableHTML += '<th>' + '星期' + '</th>';
+
+    for (let key in people) {
+      tableHTML += '<th>' + key + '</th>';
+    }
+
+    tableHTML += '<th>' + '每日人數' + '</th>';
+
+    tableHTML += '</tr>';
+
+    // 建立表格資料的 HTML
+    for (let i = 0; i < schedule.length; i++) {
+      tableHTML += '<tr>';
+      tableHTML += '<td>' + schedule[i]['year'] + '/' + schedule[i]['month'] + '/' + schedule[i]['date'] + '</td>';
+      let holiday = '';
+      if (schedule[i]['dayOfWeek'] === 0 || schedule[i]['dayOfWeek'] === 6) {
+        holiday = 'red';
+      }
+      tableHTML += '<td class="' + holiday + '">' + days[schedule[i]['dayOfWeek']] + '</td>';
+
+      // 遍歷物件中的所有元素
+      for (let key in people) {
+        if (schedule[i]['people'].includes(key)) {
+          tableHTML += '<td>' + '出' + '</td>';
+          continue;
+        }
+        tableHTML += '<td class="rest">' + '休' + '</td>';
+      }
+      tableHTML += '<td>' + schedule[i]['people'].length + '</td>';
+      tableHTML += '</tr>';
+    }
+
+    tableHTML += '<tr>';
+    tableHTML += '<td></td>';
+    tableHTML += '<td></td>';
+    // 遍歷物件中的所有元素
+    for (let key in people) {
+      tableHTML += '<td>' + daysOnCount[key] + '</td>';
+    }
+    tableHTML += '<td></td>';
+    tableHTML += '</tr>';
+
+
+    // 建立最終的 HTML 表格
+    const finalHTML = '<table>' + tableHTML + '</table>';
+
+    // 將最終的 HTML 表格輸出到網頁上的某個元素中
+    const tableContainer = document.getElementById('table-container');
+    tableContainer.innerHTML = finalHTML;
+  }
+</script>
+
+<!-- 彈跳視窗 -->
+<script>
+  // 開啟彈跳視窗
+  function openModal() {
+    document.getElementById("myModal").style.display = "block";
+  }
+
+  // 關閉彈跳視窗
+  function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+  }
+</script>
+<!-- 動態新增輸入框 -->
+<script>
+  // 動態新增輸入框
+  function addInput() {
+    var container = document.getElementById("inputContainer");
+    var peopleDiv = document.createElement("div");
+    peopleDiv.classList.add('people-div');
+    var peopleName = document.createElement("label");
+    peopleName.textContent = "姓名 : ";
+    var people = document.createElement("input");
+    people.type = "text";
+    people.name = "people[]";
+    people.required = true;
+    var workDayName = document.createElement("label");
+    workDayName.textContent = " 工作天數 : ";
+    var workdays = document.createElement("input");
+    workdays.type = "text";
+    workdays.name = "workdays[]";
+    workdays.required = true;
+
+
+    var workdaysByWeek = document.createElement("label");
+    workdaysByWeek.textContent = " 每周工作天數 : ";
+    var workdaysByWeekInput = document.createElement("input");
+    workdaysByWeekInput.type = "text";
+    workdaysByWeekInput.name = "workdaysByWeek[]";
+    workdaysByWeekInput.required = true;
+    
+    var fixedRestDayName = document.createElement("label");
+    fixedRestDayName.textContent = " 固定休 : ";
+    var fixedRestDay = document.createElement("input");
+    fixedRestDay.type = "text";
+    fixedRestDay.name = "fixedRestDay[]";
+    fixedRestDay.required = true;
+
+    var lineBreak = document.createElement("br");
+    peopleDiv.appendChild(peopleName);
+    peopleDiv.appendChild(people);
+    peopleDiv.appendChild(workDayName);
+    peopleDiv.appendChild(workdays);
+    peopleDiv.appendChild(workdaysByWeek);
+    peopleDiv.appendChild(workdaysByWeekInput);
+    peopleDiv.appendChild(fixedRestDayName);
+    peopleDiv.appendChild(fixedRestDay);
+    peopleDiv.appendChild(lineBreak);
+    container.appendChild(peopleDiv);
+  }
+
+  // 刪除最後一個新增的輸入框
+  function removeInput() {
+    var container = document.getElementById("inputContainer");
+    var peopleDivs = container.getElementsByClassName("people-div");
+    var lastPeopleDivs = peopleDivs[peopleDivs.length - 1];
+
+    if (lastPeopleDivs) {
+      container.removeChild(lastPeopleDivs);
+    }
+  }
+</script>
+
+<script>
+  // doing
+  configs();
+
+  openModal();
+</script>
